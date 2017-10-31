@@ -89,6 +89,13 @@ public class Hive_TrackerDB {
 	public static final String PESTSEEN = "pestSeen";
 	public static final String PESTMANAGEMENT = "pestManagement";
 
+	//Change CONSTS
+	public static final String CHANGE = "change";
+	public static final String CHANGEID = "changeid";
+	public static final String CHANGEDTABLE = "changedTable";
+	public static final String ROW = "row";
+	public static final String CHANGE = "change";
+
 
 	private static class DBHelper extends SQLiteOpenHelper {
 
@@ -96,7 +103,6 @@ public class Hive_TrackerDB {
 						SQLiteDatabase.CursorFactory factory, int version) {
 			super(context, name, factory, version);
 		}
-
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
@@ -146,6 +152,10 @@ public class Hive_TrackerDB {
 			//Pest Table
 			db.execSQL("CREATE TABLE " + PEST + " (" + PESTID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PESTSEEN + " VARCHAR, " + PESTMANAGEMENT + " VARCHAR, " + INSPECTIONID + " INTEGER NOT NULL, " +
 					   " FOREIGN KEY (inspectionID) REFERENCES Inspection(inspectionID) ON DELETE CASCADE )");
+
+			//Change Table
+			db.execSQL("CREATE TABLE " + CHANGE + " (" + CHANGEID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CHANGEDTABLE + " VARCHAR, " + CHANGE + " INTEGER, " +
+					   " ON DELETE CASCADE )");
 
 
 		}
